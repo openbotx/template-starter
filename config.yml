@@ -1,0 +1,99 @@
+version: "1.0.0"
+
+# Bot identity
+bot:
+  name: "OpenBotX"
+  description: "AI Assistant with skills and tools"
+
+# Database configuration
+database:
+  type: "sqlite"  # sqlite | postgres
+  sqlite:
+    path: "./db/openbotx.db"
+  postgres:
+    host: "${POSTGRES_HOST}"
+    port: 5432
+    database: "openbotx"
+    user: "${POSTGRES_USER}"
+    password: "${POSTGRES_PASSWORD}"
+
+# Storage provider for media/attachments
+storage:
+  type: "local"  # local | s3
+  local:
+    path: "./media"
+  s3:
+    bucket: "${S3_BUCKET}"
+    region: "${AWS_REGION}"
+    access_key: "${AWS_ACCESS_KEY}"
+    secret_key: "${AWS_SECRET_KEY}"
+
+# LLM provider configuration
+llm:
+  provider: "anthropic"  # anthropic | openai
+  model: "claude-sonnet-4-20250514"
+  max_tokens: 4096
+  temperature: 0.7
+
+# Gateway providers (message input/output)
+gateways:
+  cli:
+    enabled: true
+  websocket:
+    enabled: true
+    host: "0.0.0.0"
+    port: 8765
+  telegram:
+    enabled: false
+    token: "${TELEGRAM_BOT_TOKEN}"
+    allowed_users:
+      - "${TELEGRAM_ALLOWED_USER_ID}"
+
+# API server configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+
+# Transcription (audio to text)
+transcription:
+  provider: "whisper"
+  model: "base"  # tiny | base | small | medium | large
+
+# TTS (text to speech)
+tts:
+  provider: "openai"
+  voice: "alloy"  # alloy | echo | fable | onyx | nova | shimmer
+
+# MCP servers configuration
+mcp:
+  servers: []
+  # Example:
+  # servers:
+  #   - name: "filesystem"
+  #     command: "npx"
+  #     args: ["-y", "@anthropic/mcp-server-filesystem", "/path/to/dir"]
+
+# Security settings
+security:
+  prompt_injection_detection: true
+  tool_approval_required: false
+  max_tokens_per_request: 100000
+  allowed_tools: []  # empty = all tools allowed
+  denied_tools: []
+
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG | INFO | WARNING | ERROR | CRITICAL
+  format: "json"  # json | text
+  file: "./logs/openbotx.log"
+  max_size_mb: 100
+  backup_count: 5
+
+# Paths (relative to project root)
+paths:
+  skills: "./skills"
+  memory: "./memory"
+  media: "./media"
+  logs: "./logs"
+  db: "./db"
