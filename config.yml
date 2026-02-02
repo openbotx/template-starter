@@ -49,6 +49,12 @@ gateways:
     allowed_users:
       - "${TELEGRAM_ALLOWED_USER_ID}"
 
+# Browser relay
+relay:
+  enabled: true
+  host: "127.0.0.1"
+  port: 18792
+
 # API server configuration
 api:
   host: "0.0.0.0"
