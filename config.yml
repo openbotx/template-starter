@@ -3,7 +3,7 @@ version: "1.0.0"
 # Bot identity
 bot:
   name: "OpenBotX"
-  description: "AI Assistant with skills and tools"
+  description: "AI Assistant powered by OpenBotX"
 
 # Database configuration
 database:

@@ -33,7 +33,7 @@ Edit `config.yml` to customize your bot:
 
 ```yaml
 bot:
-  name: "My Assistant"
+  name: "OpenBotX"
   description: "AI Assistant powered by OpenBotX"
 
 llm:
