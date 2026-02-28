@@ -1,0 +1,8 @@
+.env
+workspace/sessions/
+workspace/memory/HISTORY.md
+workspace/cron_jobs.json
+logs/
+__pycache__/
+*.pyc
+.DS_Store

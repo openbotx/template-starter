@@ -1,0 +1,164 @@
+bot:
+  name: "My Assistant"
+  description: "A helpful AI assistant"
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  # public_url: "https://my-domain.com"
+  credential: server_secret
+
+credentials:
+  anthropic:
+    type: simple
+    key: ${ANTHROPIC_API_KEY}
+
+  server_secret:
+    type: simple
+    key: ${AUTH_SECRET_KEY}
+
+  web_client:
+    type: login
+    username: "admin"
+    password: "admin"
+
+  # openai:
+  #   type: simple
+  #   key: ${OPENAI_API_KEY}
+
+  # openrouter:
+  #   type: simple
+  #   key: ${OPENROUTER_API_KEY}
+
+  # gemini:
+  #   type: simple
+  #   key: ${GEMINI_API_KEY}
+
+  # brave:
+  #   type: simple
+  #   key: ${BRAVE_API_KEY}
+
+  # telegram:
+  #   type: simple
+  #   key: ${TELEGRAM_BOT_TOKEN}
+
+  # twitter:
+  #   type: oauth1
+  #   consumer_key: ${TWITTER_CONSUMER_KEY}
+  #   consumer_secret: ${TWITTER_CONSUMER_SECRET}
+  #   access_token: ${TWITTER_ACCESS_TOKEN}
+  #   access_token_secret: ${TWITTER_ACCESS_TOKEN_SECRET}
+
+  # aws:
+  #   type: aws
+  #   access_key: ${AWS_ACCESS_KEY}
+  #   secret_key: ${AWS_SECRET_KEY}
+
+  # my_bearer:
+  #   type: bearer
+  #   token: ${MY_BEARER_TOKEN}
+
+  # my_header:
+  #   type: header
+  #   header_name: "X-API-Key"
+  #   value: ${MY_API_KEY}
+
+providers:
+  anthropic:
+    credential: anthropic
+
+  # openai:
+  #   credential: openai
+
+  # openrouter:
+  #   credential: openrouter
+
+  # gemini:
+  #   credential: gemini
+
+web_client:
+  credential: web_client
+
+agents:
+  main:
+    workspace: "./workspace"
+    model: "anthropic/claude-sonnet-4-20250514"
+    description: "General-purpose assistant"
+    instructions: ""
+    tools:
+      - read_file
+      - write_file
+      - edit_file
+      - list_dir
+      - exec
+      - web_search
+      - web_fetch
+      - http_client
+      - rss_reader
+      - generate_image
+      - message
+      - spawn
+      - cron
+      - browser
+      - memory_save
+      - memory_read
+      - memory_search
+    model_params:
+      max_tokens: 8192
+      temperature: 0.1
+    agent_params:
+      max_iterations: 40
+      memory_window: 100
+
+  # Add more agents for multi-agent routing:
+  # creative:
+  #   workspace: "./workspace"
+  #   model: "anthropic/claude-sonnet-4-20250514"
+  #   description: "Creative tasks: writing, images, memes, social media"
+  #   tools:
+  #     - read_file
+  #     - write_file
+  #     - generate_image
+  #     - web_search
+  #     - http_client
+  #     - message
+  #     - memory_save
+
+image:
+  model: "openai/dall-e-3"
+
+  # Alternative: use Gemini for image generation
+  # model: "gemini/gemini-2.0-flash-preview-image-generation"
+
+tools:
+  general:
+    restrict_to_workspace: true
+  exec:
+    timeout: 30
+  web_search:
+    credential: brave
+    max_results: 5
+
+channels:
+  telegram:
+    enabled: false
+    # credential: telegram
+    # allowed_users: []
+
+storage:
+  type: "local"
+  local_path: "./workspace"
+  # type: "s3"
+  # s3_bucket: "my-bucket"
+  # s3_region: "us-east-1"
+  # credential: aws
+
+cron:
+  enabled: true
+
+heartbeat:
+  enabled: false
+  # interval: 300
+
+# classifier:
+#   model: "anthropic/claude-haiku-3-20240307"
