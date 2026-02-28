@@ -13,6 +13,10 @@ credentials:
     type: simple
     key: ${ANTHROPIC_API_KEY}
 
+  gemini:
+    type: simple
+    key: ${GEMINI_API_KEY}
+
   server_secret:
     type: simple
     key: ${AUTH_SECRET_KEY}
@@ -29,10 +33,6 @@ credentials:
   # openrouter:
   #   type: simple
   #   key: ${OPENROUTER_API_KEY}
-
-  # gemini:
-  #   type: simple
-  #   key: ${GEMINI_API_KEY}
 
   # brave:
   #   type: simple
@@ -73,8 +73,8 @@ providers:
   # openrouter:
   #   credential: openrouter
 
-  # gemini:
-  #   credential: gemini
+  gemini:
+    credential: gemini
 
 web_client:
   credential: web_client
@@ -125,10 +125,7 @@ agents:
   #     - memory_save
 
 image:
-  model: "openai/dall-e-3"
-
-  # Alternative: use Gemini for image generation
-  # model: "gemini/gemini-2.0-flash-preview-image-generation"
+  model: "gemini/gemini-3.1-flash-image-preview"
 
 tools:
   general:
