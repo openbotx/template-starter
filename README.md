@@ -60,14 +60,21 @@ All settings can also be edited from the web panel under **Settings**.
 
 ## Skills
 
-Skills are Markdown files that teach the agent new capabilities. Place them in `workspace/skills/`:
+Skills are Markdown files with YAML frontmatter that teach the agent new capabilities. Place them in `workspace/skills/`:
 
 ```
 workspace/skills/my-skill/
-└── SKILL.md
+├── SKILL.md              (required)
+├── scripts/              (optional - executable code)
+├── references/           (optional - documentation for context)
+└── assets/               (optional - templates, images, fonts)
 ```
 
+Each `SKILL.md` has a frontmatter with `name` and `description` (the primary trigger for skill activation), and a Markdown body with instructions for the agent.
+
 This template includes a **meme-creator** skill as an example. Try it: open the chat and type "create a meme about programming".
+
+You can also install community skills from the **Marketplace** in the web panel.
 
 See the [Skills documentation](https://github.com/openbotx/openbotx/blob/main/docs/skills.md) for details on creating your own.
 
